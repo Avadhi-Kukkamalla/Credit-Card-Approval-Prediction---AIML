@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Credit Card Approval Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; background: #f4f6f8; }
+        h1 { text-align: center; color: #2c3e50; }
+        form { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        label { display: block; margin-top: 12px; font-weight: bold; color: #333; }
+        input, select { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 5px; }
+        button { margin-top: 20px; width: 100%; padding: 12px; background: #2980b9; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #1f6391; }
+        .result { margin-top: 20px; padding: 15px; background: #ecf0f1; border-radius: 8px; text-align: center; font-size: 18px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Credit Card Approval Prediction</h1>
+    <form action="/predict" method="POST">
+        <label>Gender</label>
+        <select name="gender">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+
+        <label>Own a Car?</label>
+        <select name="own_car">
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
+        </select>
+
+        <label>Own Realty/Property?</label>
+        <select name="own_realty">
+            <option value="Y">Yes</option>
+            <option value="N">No</option>
+        </select>
+
+        <label>Number of Children</label>
+        <input type="number" name="children" value="0" min="0">
+
+        <label>Total Annual Income</label>
+        <input type="number" name="income" value="150000" step="1000">
+
+        <label>Income Type</label>
+        <select name="income_type">
+            <option value="Working">Working</option>
+            <option value="Commercial associate">Commercial associate</option>
+            <option value="Pensioner">Pensioner</option>
+            <option value="State servant">State servant</option>
+            <option value="Student">Student</option>
+        </select>
+
+        <label>Education Level</label>
+        <select name="education">
+            <option value="Secondary / secondary special">Secondary / secondary special</option>
+            <option value="Higher education">Higher education</option>
+            <option value="Incomplete higher">Incomplete higher</option>
+            <option value="Lower secondary">Lower secondary</option>
+            <option value="Academic degree">Academic degree</option>
+        </select>
+
+        <label>Family Status</label>
+        <select name="family_status">
+            <option value="Married">Married</option>
+            <option value="Single / not married">Single / not married</option>
+            <option value="Civil marriage">Civil marriage</option>
+            <option value="Separated">Separated</option>
+            <option value="Widow">Widow</option>
+        </select>
+
+        <label>Housing Type</label>
+        <select name="housing_type">
+            <option value="House / apartment">House / apartment</option>
+            <option value="Rented apartment">Rented apartment</option>
+            <option value="Municipal apartment">Municipal apartment</option>
+            <option value="With parents">With parents</option>
+            <option value="Office apartment">Office apartment</option>
+        </select>
+
+        <label>Occupation</label>
+        <select name="occupation">
+            <option value="Laborers">Laborers</option>
+            <option value="Core staff">Core staff</option>
+            <option value="Sales staff">Sales staff</option>
+            <option value="Managers">Managers</option>
+            <option value="Drivers">Drivers</option>
+            <option value="High skill tech staff">High skill tech staff</option>
+            <option value="Accountants">Accountants</option>
+            <option value="Medicine staff">Medicine staff</option>
+            <option value="Security staff">Security staff</option>
+            <option value="Cooking staff">Cooking staff</option>
+            <option value="Cleaning staff">Cleaning staff</option>
+            <option value="Private service staff">Private service staff</option>
+            <option value="Low-skill Laborers">Low-skill Laborers</option>
+            <option value="Secretaries">Secretaries</option>
+            <option value="Waiters/barmen staff">Waiters/barmen staff</option>
+            <option value="HR staff">HR staff</option>
+            <option value="Realty agents">Realty agents</option>
+            <option value="IT staff">IT staff</option>
+            <option value="Unknown">Unknown</option>
+        </select>
+
+        <label>Age (Years)</label>
+        <input type="number" name="age" value="35" min="18" max="100">
+
+        <label>Years Employed (0 if unemployed/retired)</label>
+        <input type="number" name="years_employed" value="5" min="0" step="0.1">
+
+        <label>Number of Family Members</label>
+        <input type="number" name="family_members" value="2" min="1">
+
+        <label>Has Work Phone?</label>
+        <select name="work_phone">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <label>Has Phone?</label>
+        <select name="phone">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <label>Has Email?</label>
+        <select name="email">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+
+        <button type="submit">Check Approval</button>
+    </form>
+    <p style="text-align:center; margin-top:20px;"><a href="/batch">Compliance Officer? Try Batch Screening &rarr;</a></p>
+    {% if prediction_text %}
+    <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+</body>
+</html>
