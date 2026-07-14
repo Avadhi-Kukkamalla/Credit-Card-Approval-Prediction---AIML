@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Batch Credit Risk Screening</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; background: #f4f6f8; }
+        h1 { text-align: center; color: #2c3e50; }
+        .box { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input[type=file] { width: 100%; padding: 10px; margin: 15px 0; border: 1px solid #ccc; border-radius: 5px; }
+        button { width: 100%; padding: 12px; background: #2980b9; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #1f6391; }
+        code { background: #ecf0f1; padding: 2px 6px; border-radius: 4px; }
+        a { display: inline-block; margin-top: 15px; color: #2980b9; }
+    </style>
+</head>
+<body>
+    <h1>Batch Credit Risk Screening</h1>
+    <div class="box">
+        <p>Upload a CSV file containing multiple applicants to screen them all at once. Required columns:</p>
+        <p><code>applicant_id, gender, own_car, own_realty, children, income, income_type, education, family_status, housing_type, occupation, age, years_employed, family_members, work_phone, phone, email</code></p>
+        <form action="/batch_predict" method="POST" enctype="multipart/form-data">
+            <input type="file" name="csv_file" accept=".csv" required>
+            <button type="submit">Screen Applicants</button>
+        </form>
+        <a href="/">&larr; Back to Single Applicant Check</a>
+    </div>
+</body>
+</html>
